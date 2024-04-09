@@ -62,29 +62,29 @@ CREATE TABLE IF NOT EXISTS cirurgia(
 --INSERÇÕES
 INSERT INTO paciente 
 SELECT NEXTVAL('sid_paciente'), 'p1', 'João', 12 
-WHERE NOT EXISTS (SELECT 1 FROM paciente WHERE nome = 'João' AND codigo = 'p1')
+WHERE NOT EXISTS (SELECT 1 FROM paciente WHERE codigo = 'p1')
 UNION
 SELECT NEXTVAL('sid_paciente'), 'p2', 'Maria', 38 
-WHERE NOT EXISTS (SELECT 1 FROM paciente WHERE nome = 'Maria' AND codigo = 'p2')
+WHERE NOT EXISTS (SELECT 1 FROM paciente WHERE codigo = 'p2')
 UNION
 SELECT NEXTVAL('sid_paciente'), 'p3', 'Pedro', 21 
-WHERE NOT EXISTS (SELECT 1 FROM paciente WHERE nome = 'Pedro' AND codigo = 'p3')
+WHERE NOT EXISTS (SELECT 1 FROM paciente WHERE codigo = 'p3')
 UNION
 SELECT NEXTVAL('sid_paciente'), 'p4', 'Antônio', 29 
-WHERE NOT EXISTS (SELECT 1 FROM paciente WHERE nome = 'Antônio' AND codigo = 'p4');
+WHERE NOT EXISTS (SELECT 1 FROM paciente WHERE codigo = 'p4');
 
 INSERT INTO medico 
 SELECT NEXTVAL('sid_medico'), 'm1', 'Marcos', 'Oftalmologista' 
-WHERE NOT EXISTS (SELECT 1 FROM medico WHERE nome = 'Marcos' AND crm = 'm1')
+WHERE NOT EXISTS (SELECT 1 FROM medico WHERE crm = 'm1')
 UNION
 SELECT NEXTVAL('sid_medico'), 'm2', 'Tereza', 'Clínico Geral' 
-WHERE NOT EXISTS (SELECT 1 FROM medico WHERE nome = 'Tereza' AND crm = 'm2')
+WHERE NOT EXISTS (SELECT 1 FROM medico WHERE crm = 'm2')
 UNION
 SELECT NEXTVAL('sid_medico'), 'm3', 'Paulo', 'Pediatra' 
-WHERE NOT EXISTS (SELECT 1 FROM medico WHERE nome = 'Paulo' AND crm = 'm3')
+WHERE NOT EXISTS (SELECT 1 FROM medico WHERE crm = 'm3')
 UNION
 SELECT NEXTVAL('sid_medico'), 'm4', 'João', 'Clínico Geral' 
-WHERE NOT EXISTS (SELECT 1 FROM medico WHERE nome = 'João' AND crm = 'm4');
+WHERE NOT EXISTS (SELECT 1 FROM medico WHERE crm = 'm4');
 
 INSERT INTO atende 
 SELECT NEXTVAL('sid_atende'), 
@@ -148,50 +148,38 @@ SELECT NEXTVAL('sid_cirurgia'),
        'c1', 
        '25/07/2008'::DATE,
        'Apendicite',
-	   (SELECT id_paciente FROM paciente WHERE nome = 'João')
+	(SELECT id_paciente FROM paciente WHERE nome = 'João')
 WHERE NOT EXISTS (
     SELECT 1 FROM cirurgia 
     WHERE codigo = 'c1'
-    AND data_cirurgia = '25/07/2008'::DATE
-    AND descricao = 'Apendicite'
-	AND id_paciente = (SELECT id_paciente FROM paciente WHERE nome = 'João')
 )
 UNION
 SELECT NEXTVAL('sid_cirurgia'), 
        'c2', 
        '07/02/2001'::DATE,
        'Retirada de cálculo renal',
-	   (SELECT id_paciente FROM paciente WHERE nome = 'Maria')
+	(SELECT id_paciente FROM paciente WHERE nome = 'Maria')
 WHERE NOT EXISTS (
     SELECT 1 FROM cirurgia 
     WHERE codigo = 'c2'
-    AND data_cirurgia = '07/02/2001'::DATE
-    AND descricao = 'Retirada de cálculo renal'
-	AND id_paciente = (SELECT id_paciente FROM paciente WHERE nome = 'Maria')
 )
 UNION
 SELECT NEXTVAL('sid_cirurgia'), 
        'c3', 
        '14/11/2007'::DATE,
        'Unha encravada',
-	   (SELECT id_paciente FROM paciente WHERE nome = 'Pedro')
+	(SELECT id_paciente FROM paciente WHERE nome = 'Pedro')
 WHERE NOT EXISTS (
     SELECT 1 FROM cirurgia 
     WHERE codigo = 'c3'
-    AND data_cirurgia = '14/11/2007'::DATE
-    AND descricao = 'Unha encravada'
-	AND id_paciente = (SELECT id_paciente FROM paciente WHERE nome = 'Pedro')
 )
 UNION
 SELECT NEXTVAL('sid_cirurgia'), 
        'c4', 
        '23/01/2008'::DATE,
        'Implante de silicone',
-	   (SELECT id_paciente FROM paciente WHERE nome = 'Maria')
+	(SELECT id_paciente FROM paciente WHERE nome = 'Maria')
 WHERE NOT EXISTS (
     SELECT 1 FROM cirurgia 
     WHERE codigo = 'c4'
-    AND data_cirurgia = '23/01/2008'::DATE
-    AND descricao = 'Implante de silicone'
-	AND id_paciente = (SELECT id_paciente FROM paciente WHERE nome = 'Maria')
 );
