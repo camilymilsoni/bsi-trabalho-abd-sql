@@ -1,6 +1,6 @@
 # TrabalhoABD
 
-Este repositório é destinado a fins acadêmicos e contém os arquivos relacionados ao trabalho de Banco de Dados da dupla **Camily Milsoni Rodrigues** e **Matheus de Oliveira Cortez Cervantes**.
+Este repositório é destinado a fins acadêmicos e contém os arquivos relacionados ao trabalho de Administração de Banco de Dados da dupla **Camily Milsoni Rodrigues** e **Matheus de Oliveira Cortez Cervantes**.
 
 ## Integrantes do Grupo
 - [Camily Milsoni Rodrigues](https://github.com/camilymilsoni)
